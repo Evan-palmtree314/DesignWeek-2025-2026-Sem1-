@@ -1,23 +1,102 @@
 ﻿using MohawkTerminalGame;
 using Raylib_cs;
 using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
+using System.Text;
+using System.Threading;
 
 public class ByteClass
 {
-    ColoredText bytee = new("------\v\b\b\b\b\b\b" +
-            "| [] |\v\b\b\b\b\b\b" +
-            "------", ConsoleColor.Gray, ConsoleColor.DarkGray);
-    int[] byte1 = [];
-    int[] byte2 = [35, 12];
-    int[] byte3 = [56, 8];
-    public ByteClass(int xPosition, int yPosition)
+    public ColoredText byte1 = new("░  ░  ▄ ░  ░      \v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b░  ░▓▒  ▒▓▓█▒ ░▓▒  ░  \v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b  ░  ░ ░▓████▓  ░ ▓▒  \v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b ░▒▓   ▒▌ ▓ ▐▓ ▓▒░    \v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b  ▓   ░ ██▄██   ▓    ░\v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b░    ▒ ░▄■■■▄▓    ░   \v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b ▒      ▀▒▓█▀      ▒░ ");
+
+    string timer10 = "╔▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄╗\v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b╚▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀╝";
+
+    string timer9 = "╔▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄──╗\v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b╚▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀──╝";
+
+    string timer8 = "╔▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄────╗\v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b╚▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀────╝";
+
+    string timer7 = "╔▄▄▄▄▄▄▄▄▄▄▄▄▄▄──────╗\v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b╚▀▀▀▀▀▀▀▀▀▀▀▀▀▀──────╝";
+
+    string timer6 = "╔▄▄▄▄▄▄▄▄▄▄▄▄────────╗\v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b╚▀▀▀▀▀▀▀▀▀▀▀▀────────╝";
+
+    string timer5 = "╔▄▄▄▄▄▄▄▄▄▄──────────╗\v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b╚▀▀▀▀▀▀▀▀▀▀──────────╝";
+
+    string timer4 = "╔▄▄▄▄▄▄▄▄────────────╗\v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b╚▀▀▀▀▀▀▀▀────────────╝";
+
+    string timer3 = "╔▄▄▄▄▄▄──────────────╗\v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b╚▀▀▀▀▀▀──────────────╝";
+
+    string timer2 = "╔▄▄▄▄────────────────╗\v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b╚▀▀▀▀────────────────╝";
+
+    string timer1 = "╔▄▄──────────────────╗\v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b╚▀▀──────────────────╝";
+
+    string timer0 = "╔────────────────────╗\v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b╚────────────────────╝";
+
+    string timerAtt = "╔╥╥╥╥╥╥╥╥╥╥╥╥╥╥╥╥╥╥╥╥╗\v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b╚╨╨╨╨╨╨╨╨╨╨╨╨╨╨╨╨╨╨╨╨╝";
+
+    string timerDeath = "╔\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/╗\v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b╚/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\╝";
+
+    
+
+    string[] timers;
+    public int xPos;
+    int yPos = 2;
+    bool byteDeath = false;
+
+    float timeleft;
+    int byteType; // can be red, blue, yellow
+    public int byteWindow;
+    public ConsoleColor newcol = ConsoleColor.White;
+    float timee;
+    int timeCounter = 10;
+    public string password;
+    public ByteClass(int type, int window, string pass)
 	{
-		
-	}
-	public void byteDraw()
-	{
-        //map.Poke(byte1[0], byte1[1], bytee);
-        //map.Poke(byte2[0], byte2[1], bytee);
-        //map.Poke(byte3[0], byte3[1], bytee);
+        /// import timer sprites.
+        //Time.ElapsedSeconds()
+        timers = new string[] {timer0, timer1, timer2, timer3, timer4, timer5, timer6, timer7, timer8, timer9, timer10, timerDeath, timerAtt};
+        this.byteType = type;
+        this.byteWindow = window;
+        this.password = pass;
+        switch (byteWindow)
+        {
+            case 0:
+                xPos = 4;
+                break;
+            case 1:
+                xPos = 30;
+                break;
+            case 2:
+                xPos = 56;
+                break;
+        }
+        switch (byteType)
+        {
+            case 0:
+                newcol = ConsoleColor.Red;
+                break;
+            case 1:
+                newcol = ConsoleColor.Blue;
+                break;
+            case 2:
+                newcol = ConsoleColor.Yellow;
+                break;
+        }
     }
+    public string timerstuff()
+    {
+        string timerGui = timers[timeCounter];
+        timeCounter -= 1;
+        if (byteDeath)
+        {
+            return ("KILLNOW");
+        }
+        if (timeCounter == -1)
+        {
+            timeCounter = 11;
+            byteDeath = true;
+        }
+        return (timerGui);
+    }
+    
 }
