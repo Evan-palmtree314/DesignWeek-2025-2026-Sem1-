@@ -10,8 +10,10 @@ namespace MohawkTerminalGame
     public static class Input
     {
         private readonly static Thread InputThread;
-        private readonly static List<ConsoleKey> LastFrameKeys = [];
-        private readonly static List<ConsoleKey> CurrentFrameKeys = [];
+        public static string CurrentText { get; private set; } = string.Empty;
+
+        public static event Action<string> OnCharacterTyped;
+        public static event Action<string> OnEnterPressed;
 
         /// <summary>
         ///     Called to reset current frame inputs.
@@ -19,66 +21,10 @@ namespace MohawkTerminalGame
         /// </summary>
         internal static void PreparePollNextInput()
         {
-            LastFrameKeys.Clear();
-            LastFrameKeys.AddRange(CurrentFrameKeys);
-            CurrentFrameKeys.Clear();
+
         }
 
-        /// <summary>
-        ///     Checks to see if the <paramref name="key"/> is not pressed.
-        /// </summary>
-        /// <param name="key">The key to check.</param>
-        /// <returns>
-        ///     True if key is not pressed.
-        /// </returns>
-        public static bool IsKeyUp(ConsoleKey key)
-        {
-            // Up if not currently pressed
-            bool state = !CurrentFrameKeys.Contains(key);
-            return state;
-        }
-
-        /// <summary>
-        ///     Checks to see if the <paramref name="key"/> is pressed down.
-        /// </summary>
-        /// <param name="key">The key to check.</param>
-        /// <returns>
-        ///     True if key is pressed down.
-        /// </returns>
-        public static bool IsKeyDown(ConsoleKey key)
-        {
-            // Down if currently pressed
-            bool state = CurrentFrameKeys.Contains(key);
-            return state;
-        }
-
-        /// <summary>
-        ///     Checks to see if the <paramref name="key"/> was pressed down this frame.
-        /// </summary>
-        /// <param name="key">The key to check.</param>
-        /// <returns>
-        ///     True if key was pressed down this frame.
-        /// </returns>
-        public static bool IsKeyPressed(ConsoleKey key)
-        {
-            // Pressed if currently pressed down but was previously unpressed
-            bool state = CurrentFrameKeys.Contains(key) && !LastFrameKeys.Contains(key);
-            return state;
-        }
-
-        /// <summary>
-        ///     Checks to see if the <paramref name="key"/> was released this frame.
-        /// </summary>
-        /// <param name="key">The key to check.</param>
-        /// <returns>
-        ///     True if key was released this frame.
-        /// </returns>
-        public static bool IsKeyReleased(ConsoleKey key)
-        {
-            // Released if currently unpressed but was previously pressed down
-            bool state = !CurrentFrameKeys.Contains(key) && LastFrameKeys.Contains(key);
-            return state;
-        }
+        public static bool IsKeyPressed(ConsoleKey key) => false;
 
         /// <summary>
         ///     Initialize background input thread.
@@ -108,10 +54,27 @@ namespace MohawkTerminalGame
                         continue;
 
                     ConsoleKeyInfo consoleKeyInfo = Console.ReadKey();
-                    if (consoleKeyInfo.Key != ConsoleKey.None)
+                    if (consoleKeyInfo.Key == ConsoleKey.None)
+                        continue;
+
+                    char c = consoleKeyInfo.KeyChar;
+
+                    if (c == '\r')
                     {
-                        CurrentFrameKeys.Add(consoleKeyInfo.Key);
+                        OnEnterPressed?.Invoke(CurrentText);
+                        CurrentText = string.Empty;
                     }
+                    else if (c == '\b')
+                    {
+                        CurrentText = CurrentText[..^1];
+                        OnCharacterTyped?.Invoke(CurrentText);
+                    }
+                    else if (char.IsAscii(c))
+                    {
+                        CurrentText += c;
+                        OnCharacterTyped?.Invoke(CurrentText);
+                    }
+
                 }
             }
 
