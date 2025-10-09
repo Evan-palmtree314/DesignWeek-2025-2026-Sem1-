@@ -9,10 +9,15 @@ using System.Xml.Serialization;
 
 namespace MohawkTerminalGame
 {
+    
     public class TerminalGame
     {
         //test
         string lastInput = string.Empty;
+        // point score 
+        public int pointTotal;
+        // bool to check if the current wave is over 
+        public bool waveOver;
 
         static List<string> PASSWORDS = new List<string>() { "Cardstock", "bookworm", "Chessecake", "Passwords", "pass123", "glowShift", "mintLeaf", "H@ppy" };
         List<string> Passwords = new List<string>() {};
@@ -129,7 +134,6 @@ namespace MohawkTerminalGame
             Input.OnEnterPressed += OnEnterPressed;
 
             Passwords = PASSWORDS;
-
         }
         // Execute() runs based on Program.TerminalExecuteMode (assign to it in Setup).
         //  ExecuteOnce: runs only once. Once Execute() is done, program closes.
@@ -182,6 +186,7 @@ namespace MohawkTerminalGame
                             map.Poke(Bytes[i].xPos - 3, 17, refresh2);
                             Bytes[i] = null;
                             Terminal.SetCursorPosition(termtemp, 23);
+                            //(Bytes[i].byteType)
                         }
                         else
                         {

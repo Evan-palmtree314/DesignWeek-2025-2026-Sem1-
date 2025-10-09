@@ -6,56 +6,56 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualBasic.FileIO;
 using MohawkTerminalGame;
-public class scoreboard
+
+public class scoreSystem
 {
     // varibles 
-    int pointTotal;
-
-
+    public int pointTotal;
+    public bool waveOver;
+    
 
    // score systyem
    // pardon my lack of spelling anbd common sense
 
     // 3 seperate score types for killing enemy  
-    public RegularPointScore(int currentPoints)
+    public scoreSystem(int currentPoints,ByteClass steve)
     {
-        currentPoints + 100;
-
-            return currentPoints;
-    }
-    public fastPointScore(int currentPoints)
-    {
-        currentPoints + 200;
-
-        return currentPoints;
-    }
-    public frostPointScore(int currentPoints)
-    {
-        currentPoints + 150;
-
-        return currentPoints;
-    }
-
-    // special ability point
-    public SpecialScore(int currentPoints,bool speicalCircumstance)
-    {
-        if (speicalCircumstance=true)
+        switch (steve.byteType)
         {
-            currentPoints+500
-
+            case 0: //yellow
+                {
+                    int addedScore = 100;
+                    pointTotal += addedScore;
+                    return;
+                }
+            case 1:
+                {
+                    int addedScore = 200;
+                    pointTotal += addedScore;
+                    return;
+                }
+            case 2:
+                {
+                    int addedScore = 200;
+                    pointTotal += addedScore;
+                    return;
+                }
         }
-        return currentPoints;
     }
-    // time based wave points 
-    // every 
-    public wavePointAdd(int currentPoints,bool waveOver)// a clock function is needed)
-    {
-        if (waveOver = true) 
-        { 
-        currentPoints+1000
 
-        }
-        return currentPoints;
+    
+    // special ability point
+
+     public void speicalScoreSystem()
+     {
+        pointTotal += 500;
+     }
+   
+    // time based wave points 
+    // ever
+    public void WavePoints()// a clock function is needed)
+    {
+        pointTotal += 1000;
     }
 
 
