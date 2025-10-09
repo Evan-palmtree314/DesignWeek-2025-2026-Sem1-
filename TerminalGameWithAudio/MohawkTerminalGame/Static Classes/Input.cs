@@ -14,6 +14,8 @@ namespace MohawkTerminalGame
 
         public static event Action<string> OnCharacterTyped;
         public static event Action<string> OnEnterPressed;
+        private readonly static List<ConsoleKey> CurrentFrameKeys = [];
+        private readonly static List<ConsoleKey> LastFrameKeys = [];
 
         /// <summary>
         ///     Called to reset current frame inputs.
@@ -21,10 +23,26 @@ namespace MohawkTerminalGame
         /// </summary>
         internal static void PreparePollNextInput()
         {
-
+            LastFrameKeys.Clear();
+            LastFrameKeys.AddRange(CurrentFrameKeys);
+            CurrentFrameKeys.Clear();
         }
 
-        public static bool IsKeyPressed(ConsoleKey key) => false;
+        /// <summary>
+        ///     Called to reset current frame inputs.
+        ///     Don't call this unless you have a reason to.
+        /// </summary>
+
+        public static bool IsKeyPressed(ConsoleKey key)
+        {
+            // Pressed if currently pressed down but was previously unpressed
+            bool state = CurrentFrameKeys.Contains(key) && !LastFrameKeys.Contains(key);
+            return state;
+        }
+        public static void TextKiller()
+        {
+            CurrentText = string.Empty;
+        }
 
         /// <summary>
         ///     Initialize background input thread.
@@ -54,8 +72,11 @@ namespace MohawkTerminalGame
                         continue;
 
                     ConsoleKeyInfo consoleKeyInfo = Console.ReadKey();
-                    if (consoleKeyInfo.Key == ConsoleKey.None)
-                        continue;
+
+                    if (consoleKeyInfo.Key != ConsoleKey.None)
+                    {
+                        CurrentFrameKeys.Add(consoleKeyInfo.Key);
+                    }
 
                     char c = consoleKeyInfo.KeyChar;
 
@@ -64,7 +85,7 @@ namespace MohawkTerminalGame
                         OnEnterPressed?.Invoke(CurrentText);
                         CurrentText = string.Empty;
                     }
-                    else if (c == '\b')
+                    else if (c == '\b' && CurrentText.Length > 0)
                     {
                         CurrentText = CurrentText[..^1];
                         OnCharacterTyped?.Invoke(CurrentText);
