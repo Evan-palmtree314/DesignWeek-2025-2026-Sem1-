@@ -9,8 +9,13 @@ using System.Xml.Serialization;
 
 namespace MohawkTerminalGame
 {
+    
     public class TerminalGame
     {
+        // point score 
+        public int pointTotal;
+        // bool to check if the current wave is over 
+        public bool waveOver;
         // Place your variables here
         ByteClass[] Bytes = new ByteClass[3];
 
@@ -129,7 +134,6 @@ namespace MohawkTerminalGame
             Input.OnEnterPressed += OnEnterPressed;
 
             Passwords = PASSWORDS;
-
         }
         // Execute() runs based on Program.TerminalExecuteMode (assign to it in Setup).
         //  ExecuteOnce: runs only once. Once Execute() is done, program closes.

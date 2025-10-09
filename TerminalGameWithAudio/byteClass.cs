@@ -44,7 +44,7 @@ public class ByteClass
     bool byteDeath = false;
 
     float timeleft;
-    int byteType; // can be red, blue, yellow
+    public int byteType; // can be red, blue, yellow
     public int byteWindow;
     public ConsoleColor newcol = ConsoleColor.White;
     float timee;
