@@ -56,10 +56,11 @@ public class ByteClass
 
     //string consolewords = "";
     public int consoleorder = 0;
+    
 
     public void ConsoleWriter()
     {
-        consoleorder++;
+        //consoleorder++;
 
         int FUCK = Terminal.CursorLeft;
         Terminal.SetCursorPosition(3, 16 + consoleorder);
@@ -69,6 +70,18 @@ public class ByteClass
     }
     public void stupidFunctionThatIHate()
     {
+        switch (consoleorder) // make ts work
+        {
+            case 0:
+                consoleorder = 0;
+                break;
+            case 1:
+                consoleorder = 0;
+                break;
+            case 2:
+                consoleorder = 1;
+                break;
+        }
 
         int FUCK = Terminal.CursorLeft;
         Terminal.SetCursorPosition(3, 16 + consoleorder);
@@ -78,13 +91,8 @@ public class ByteClass
 
     }
 
-    public void consoleKilled()
-    {
-        consoleorder--;
-        
-    }
 
-    public ByteClass(int type, int window, string pass)
+    public ByteClass(int type, int window, string pass, int consoleshit)
 	{
         /// import timer sprites.
         //Time.ElapsedSeconds()
@@ -92,6 +100,7 @@ public class ByteClass
         this.byteType = type;
         this.byteWindow = window;
         this.password = pass;
+        this.consoleorder = consoleshit;
         switch (byteWindow)
         {
             case 0:

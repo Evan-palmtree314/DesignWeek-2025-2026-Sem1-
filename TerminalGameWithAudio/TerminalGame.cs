@@ -135,7 +135,7 @@ TERMINATING PROGRAM...                       ░░░▒▓▓▓▓▓▓▓�
 │≥/                                                                           +│
 └──────────────────────────────────────────────────────────────────────────────┘", ConsoleColor.Green, ConsoleColor.Black);
         ColoredText refresh = new ColoredText(@"/                                                                           ");
-        ColoredText refresh2 = new ColoredText("                              \v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b                              \v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b                              ", ConsoleColor.Green, ConsoleColor.Black);
+        ColoredText refresh2 = new ColoredText("                              \v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b                              \v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b                              \v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b                              ", ConsoleColor.Green, ConsoleColor.Black);
         ColoredText instructions = new ColoredText(@"  ██╗  ██╗ ██████╗ ██╗    ██╗    ██████╗     ██████╗ ██╗      █████╗ ██╗   ██╗│ 
   ██║  ██║██╔═══██╗██║    ██║    ╚════██╗    ██╔══██╗██║     ██╔══██╗╚██╗ ██╔╝│ 
  │███████║██║   ██║██║ █╗ ██║     █████╔╝    ██████╔╝██║     ███████║ ╚████╔╝   
@@ -215,8 +215,8 @@ TERMINATING PROGRAM...                       ░░░▒▓▓▓▓▓▓▓�
         bool gameStart = false;
         bool gameStart2 = false;
 
-        bool gameover1 = true;
-        bool gameover2 =  true;
+        bool gameover1 = false;
+        bool gameover2 =  false;
         //List<string> PASSWORDS = new List<string>() { "Cardstock", "bookworm", "Cheesecake", "Passwords", "pass123", "glowShift", "mintLeaf", "H@ppy", "Temporary", "12345678910", "bweh", ":3" };
         List<string> Passwords = new List<string>() { };
 
@@ -239,7 +239,8 @@ TERMINATING PROGRAM...                       ░░░▒▓▓▓▓▓▓▓�
         int waveProgress; // how far the waves have progressed
         int waveMax = 6; // max wave
         int lives = 3;
-
+        int consoleToatal = 2;
+        int consolenum = 0;
 
         float lastByteTime = 0;
 
@@ -321,7 +322,7 @@ TERMINATING PROGRAM...                       ░░░▒▓▓▓▓▓▓▓�
             }
             else
             {
-
+                //scoreboard shit
             }
 
         }
@@ -393,23 +394,21 @@ TERMINATING PROGRAM...                       ░░░▒▓▓▓▓▓▓▓�
                     if (Bytes[i].password == lastInput)
                     { // password input
                         map.Poke(Bytes[i].xPos - 2, 2, texttt);
-                        map.Poke(3, 16 , refresh2);
+                        map.Poke(3, 15 , refresh2);
+                        consoleToatal++;
                         
+                        
+                        Bytes[i] = null;
                         foreach (ByteClass bitt in Bytes)
                         {
                             if (bitt != null)
                             {
-                                bitt.consoleKilled();
-                                if (bitt.consoleorder < Bytes[i].consoleorder)
-                                {
-                                    bitt.stupidFunctionThatIHate();
-                                }
-                                
+                                bitt.stupidFunctionThatIHate();
+
                             }
 
 
                         }
-                        Bytes[i] = null;
                         Terminal.SetCursorPosition(termtemp, 23); // FIX
                     }
                 }
@@ -429,7 +428,7 @@ TERMINATING PROGRAM...                       ░░░▒▓▓▓▓▓▓▓�
             lastTime = Time.ElapsedSecondsWhole;
             // byte spawn code 
             
-            if (lastByteTime + (10.0 - (0.3 * wave)) < Time.ElapsedSeconds)
+            if (lastByteTime + (9.0 - (0.3 * wave)) < Time.ElapsedSeconds)
             {
                 
                 ByteAdd();
@@ -458,25 +457,24 @@ TERMINATING PROGRAM...                       ░░░▒▓▓▓▓▓▓▓�
                     if (fuck == "KILLNOW")
                     { // this gets rid of the byte
                         map.Poke(Bytes[i].xPos - 2, 2, texttt);
-                        map.Poke(3, 16, refresh2);
+                        map.Poke(3, 15, refresh2);
                         lives -= 1;
+                        consoleToatal++;
                         if (lives != 0)
                         {
                             heartdraw();
+                            
+                            Bytes[i] = null;
                             foreach (ByteClass bitt in Bytes)
                             {
                                 if (bitt != null)
                                 {
-                                    bitt.consoleKilled();
-                                    if (bitt.consoleorder < Bytes[i].consoleorder)
-                                    {
-                                        bitt.stupidFunctionThatIHate();
-                                    }
+                                    bitt.stupidFunctionThatIHate();
+
                                 }
 
 
                             }
-                            Bytes[i] = null;
                         }
                         else //out of lives
                         {
@@ -529,8 +527,9 @@ TERMINATING PROGRAM...                       ░░░▒▓▓▓▓▓▓▓�
                 {
                     passwordReset();
                 }
-
-                Bytes[window] = new ByteClass(type, window, tempPass);
+                int tempConsole = consoleToatal-consolenum;
+                consolenum++;
+                Bytes[window] = new ByteClass(type, window, tempPass, tempConsole);
                 //sets colour
                 Terminal.ForegroundColor = Bytes[window].newcol;
                 Bytes[window].byte1.fgColor = Bytes[window].newcol;
