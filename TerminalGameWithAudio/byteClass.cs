@@ -10,6 +10,9 @@ public class ByteClass
 {
     public ColoredText byte1 = new("░  ░  ▄ ░  ░      \v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b░  ░▓▒  ▒▓▓█▒ ░▓▒  ░  \v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b  ░  ░ ░▓████▓  ░ ▓▒  \v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b ░▒▓   ▒▌ ▓ ▐▓ ▓▒░    \v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b  ▓   ░ ██▄██   ▓    ░\v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b░    ▒ ░▄■■■▄▓    ░   \v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b ▒      ▀▒▓█▀      ▒░ ");
 
+    ColoredText byte2 =new(" ░ ░    ▄▓██▄ ░▒░     \v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b   ▒█  ░▒▓███▓ ▓  ░   \v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b ░  ▓  ░▌ ▒ ▐▓  ░ █▓ ░\v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b ░▓▒  ░ ██▄██  ░░▓    \v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b  █  ░ ▐▄■■■▄▌  ▓█  ░ \v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b ░    ░ ▀▒▓█▀      ░▒ \v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b▓            ░      ▓");
+
+    ColoredText byteDeathanim = new("\\  ▄  /\v\b\b\b\b\b\b\b\b \\███/ \v\b\b\b\b\b\b\b\b██\\█/██\v\b\b\b\b\b\b\b\b█▌ \\ ▐█\v\b\b\b\b\b\b\b\b █/▄\\█ \v\b\b\b\b\b\b\b\b█/■■■\\█");
     string timer10 = "╔▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄╗\v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b╚▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀╝";
 
     string timer9 = "╔▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄──╗\v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b╚▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀──╝";
@@ -50,6 +53,37 @@ public class ByteClass
     float timee;
     int timeCounter = 10;
     public string password;
+
+    //string consolewords = "";
+    public int consoleorder = 0;
+
+    public void ConsoleWriter()
+    {
+        consoleorder++;
+
+        int FUCK = Terminal.CursorLeft;
+        Terminal.SetCursorPosition(3, 16 + consoleorder);
+        Terminal.Write("incoming byte: "+password);
+
+        Terminal.SetCursorPosition(FUCK, 23);
+    }
+    public void stupidFunctionThatIHate()
+    {
+
+        int FUCK = Terminal.CursorLeft;
+        Terminal.SetCursorPosition(3, 16 + consoleorder);
+        Terminal.Write("incoming byte: " + password);
+
+        Terminal.SetCursorPosition(FUCK, 23);
+
+    }
+
+    public void consoleKilled()
+    {
+        consoleorder--;
+        
+    }
+
     public ByteClass(int type, int window, string pass)
 	{
         /// import timer sprites.
