@@ -455,7 +455,7 @@ TERMINATING PROGRAM...                       ░░░▒▓▓▓▓▓▓▓�
             Terminal.SetCursorPosition(3, 23);
             Input.TextKiller();
             refresh.fgColor = ConsoleColor.Green;
-            waveMax = 8 + Random.Integer(wave+1, wave+3);
+            waveMax = 5 + Random.Integer(wave+1, wave+3);
             lastByteTime = Time.ElapsedSeconds;
         }
         void heartdraw()
@@ -545,7 +545,7 @@ TERMINATING PROGRAM...                       ░░░▒▓▓▓▓▓▓▓�
             lastTime = Time.ElapsedSecondsWhole;
             // byte spawn code 
             
-            if (lastByteTime + (7.0 - (0.3 * wave)) < Time.ElapsedSeconds)
+            if (lastByteTime + (6.0 - (0.3 * wave)) < Time.ElapsedSeconds)
             {
                 
                 ByteAdd();
@@ -554,7 +554,7 @@ TERMINATING PROGRAM...                       ░░░▒▓▓▓▓▓▓▓�
                 
                 if (waveProgress > waveMax) // Spawn time will start at 10 second intervals, decreases by 0.33 seconds each round (Wave 30 is when there's absolutely no cooldown)
                 {
-                    waveMax = 5 + wave * Random.Integer(1, 3);
+                    waveMax = 5 + Random.Integer(wave + 1, wave + 3);
                     wave++;
                     waveProgress = 0;
                     Terminal.SetCursorPosition(43, 1);
