@@ -392,6 +392,7 @@ TERMINATING PROGRAM...                       ░░░▒▓▓▓▓▓▓▓�
                 Terminal.CursorVisible = false;
                 Console.Clear();
                 map.Poke(0, 0, credits);
+                Console.WriteLine("Final Score: " +scoreBor.pointTotal.ToString());
 
                 gameover2 = true;
                 /*
@@ -454,7 +455,7 @@ TERMINATING PROGRAM...                       ░░░▒▓▓▓▓▓▓▓�
             Terminal.SetCursorPosition(3, 23);
             Input.TextKiller();
             refresh.fgColor = ConsoleColor.Green;
-            waveMax = 5 + wave * Random.Integer(1, 3);
+            waveMax = 8 + Random.Integer(wave+1, wave+3);
             lastByteTime = Time.ElapsedSeconds;
         }
         void heartdraw()
@@ -544,7 +545,7 @@ TERMINATING PROGRAM...                       ░░░▒▓▓▓▓▓▓▓�
             lastTime = Time.ElapsedSecondsWhole;
             // byte spawn code 
             
-            if (lastByteTime + (8.0 - (0.2 * wave)) < Time.ElapsedSeconds)
+            if (lastByteTime + (7.0 - (0.3 * wave)) < Time.ElapsedSeconds)
             {
                 
                 ByteAdd();
@@ -665,14 +666,15 @@ TERMINATING PROGRAM...                       ░░░▒▓▓▓▓▓▓▓�
                     }
                 } while (Bytes[window] != null);
 
+                if (wave > lastPassReset + 1||Passwords.Count < 2)
+                {
+                    passwordReset();
+                }
                 int tempnum = Random.Integer(0, Passwords.Count);
                 string tempPass = Passwords[tempnum];
                 Passwords.RemoveAt(tempnum);
                 
-                if (wave> lastPassReset+1)
-                {
-                    passwordReset();
-                }
+                
                 int tempConsole = consoleToatal-consolenum;
                 consolenum++;
                 Bytes[window] = new ByteClass(type, window, tempPass, tempConsole);
