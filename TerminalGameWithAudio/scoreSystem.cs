@@ -18,7 +18,11 @@ public class scoreSystem
    // pardon my lack of spelling anbd common sense
 
     // 3 seperate score types for killing enemy  
-    public scoreSystem(int currentPoints,ByteClass steve)
+    public scoreSystem()
+    {
+        pointTotal = 0;
+    }
+    public void ScoreAdd(ByteClass steve)
     {
         switch (steve.byteType)
         {
@@ -43,10 +47,10 @@ public class scoreSystem
         }
     }
 
-    
+
     // special ability point
 
-     public void speicalScoreSystem()
+    public void speicalScoreSystem()
      {
         pointTotal += 500;
      }

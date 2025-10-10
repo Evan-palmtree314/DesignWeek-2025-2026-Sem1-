@@ -56,38 +56,30 @@ public class ByteClass
 
     //string consolewords = "";
     public int consoleorder = 0;
-    
+
+    //public int TimeBorn = 0;
 
     public void ConsoleWriter()
     {
         //consoleorder++;
 
         int FUCK = Terminal.CursorLeft;
-        Terminal.SetCursorPosition(3, 16 + consoleorder);
-        Terminal.Write("incoming byte: "+password);
+        Terminal.SetCursorPosition(3, 16 + byteWindow);
+        int bittenWindow = byteWindow + 1;
+        Terminal.Write("Window " + bittenWindow + " incoming byte: " + password);
 
         Terminal.SetCursorPosition(FUCK, 23);
     }
+    
     public void stupidFunctionThatIHate()
     {
-        switch (consoleorder) // make ts work
-        {
-            case 0:
-                consoleorder = 0;
-                break;
-            case 1:
-                consoleorder = 0;
-                break;
-            case 2:
-                consoleorder = 1;
-                break;
-        }
-
         int FUCK = Terminal.CursorLeft;
-        Terminal.SetCursorPosition(3, 16 + consoleorder);
-        Terminal.Write("incoming byte: " + password);
+        Terminal.SetCursorPosition(3, 16 + byteWindow);
+        int bittenWindow = byteWindow + 1;
+        Terminal.Write("Window "+bittenWindow+" incoming byte: " + password);
 
         Terminal.SetCursorPosition(FUCK, 23);
+        
 
     }
 

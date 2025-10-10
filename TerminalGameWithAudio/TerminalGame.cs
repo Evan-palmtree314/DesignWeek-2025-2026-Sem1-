@@ -20,6 +20,8 @@ namespace MohawkTerminalGame
     {
         // point score 
         public int pointTotal;
+        string[,] highScores = new string[2, 10];
+        scoreSystem scoreBor = new scoreSystem();
         // bool to check if the current wave is over 
         public bool waveOver;
         // Place your variables here
@@ -267,6 +269,14 @@ TERMINATING PROGRAM...                       ░░░▒▓▓▓▓▓▓▓�
             Input.OnCharacterTyped += OnCharacterPressed;
             Input.OnEnterPressed += OnEnterPressed;
 
+            for(int y = 0; y < 10; y++)
+            {
+                highScores[0, y] = "00000";
+                highScores[1, y] = "abc";
+            }
+
+
+ 
             passwordReset();
         }
         // Execute() runs based on Program.TerminalExecuteMode (assign to it in Setup).
@@ -319,10 +329,28 @@ TERMINATING PROGRAM...                       ░░░▒▓▓▓▓▓▓▓�
                 map.Poke(0, 0, Gameoverrfucker);
 
                 gameover2 = true;
+                
+                Thread.Sleep(4500);
+                // scoreboard
+                Terminal.CursorVisible = false;
+                Console.Clear();
+                map.Poke(0, 0, credits);
+
+                gameover2 = true;
+                Thread.Sleep(7000);
+                // scoreboard
+                Terminal.CursorVisible = false;
+                Console.Clear();
+                map.Poke(0, 0, scoreboard);
+
+                gameover2 = true;
+
             }
             else
             {
+                
                 //scoreboard shit
+
             }
 
         }
@@ -359,6 +387,7 @@ TERMINATING PROGRAM...                       ░░░▒▓▓▓▓▓▓▓�
             Terminal.CursorVisible = true;
             Time.Start();
             map.Poke(0, 0, Ui);
+            map.Poke(12, 1, new ColoredText(scoreBor.pointTotal.ToString(), ConsoleColor.Green, ConsoleColor.Black));
             heartdraw();
             Console.ForegroundColor = ConsoleColor.Green;
             Terminal.SetCursorPosition(43, 1);
@@ -396,8 +425,10 @@ TERMINATING PROGRAM...                       ░░░▒▓▓▓▓▓▓▓�
                         map.Poke(Bytes[i].xPos - 2, 2, texttt);
                         map.Poke(3, 15 , refresh2);
                         consoleToatal++;
-                        
-                        
+
+                        scoreBor.ScoreAdd(Bytes[i]);
+                        map.Poke(12, 1, new ColoredText(scoreBor.pointTotal.ToString(), ConsoleColor.Green, ConsoleColor.Black));
+
                         Bytes[i] = null;
                         foreach (ByteClass bitt in Bytes)
                         {
@@ -414,10 +445,12 @@ TERMINATING PROGRAM...                       ░░░▒▓▓▓▓▓▓▓�
                 }
             }
 
+            
             if (lastInput == "add")
             { // debugging, remove later.
                 ByteAdd();
             }
+            
             lastInput = null;
         }
         
@@ -437,8 +470,9 @@ TERMINATING PROGRAM...                       ░░░▒▓▓▓▓▓▓▓�
                 
                 if (waveProgress > waveMax) // Spawn time will start at 10 second intervals, decreases by 0.33 seconds each round (Wave 30 is when there's absolutely no cooldown)
                 {
-                    waveMax = 6 + wave * Random.Integer(1, 4);
+                    waveMax = 4 + wave * Random.Integer(1, 3);
                     wave++;
+                    waveProgress = 0;
                     Terminal.SetCursorPosition(43, 1);
                     Terminal.Write(wave + 1);
                     Terminal.SetCursorPosition(termtemp, 23);
@@ -463,18 +497,32 @@ TERMINATING PROGRAM...                       ░░░▒▓▓▓▓▓▓▓�
                         if (lives != 0)
                         {
                             heartdraw();
-                            
+
                             Bytes[i] = null;
-                            foreach (ByteClass bitt in Bytes)
+
+                            int[,] evilSort = new int[3, 2];
+                            int[] evilSort2 = new int[3];
+                            for (int x = 0; x < 3; x++)
                             {
-                                if (bitt != null)
+                                if (Bytes[x] != null)
                                 {
-                                    bitt.stupidFunctionThatIHate();
+                                    
+                                    Bytes[x].stupidFunctionThatIHate();
 
                                 }
-
-
                             }
+                                
+                                /*
+                            for (int y = 0; y < 3; y++)
+                            {
+                                if (evilSort[x,0] > Bytes[y].TimeBorn)
+                                {
+                                    //evilSort[x,1]
+                                }
+                            }
+                                */
+                            
+
                         }
                         else //out of lives
                         {
