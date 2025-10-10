@@ -137,7 +137,7 @@ TERMINATING PROGRAM...                       ░░░▒▓▓▓▓▓▓▓�
 │≥/                                                                           +│
 └──────────────────────────────────────────────────────────────────────────────┘", ConsoleColor.Green, ConsoleColor.Black);
         ColoredText refresh = new ColoredText(@"/                                                                           ");
-        ColoredText refresh2 = new ColoredText("                              \v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b                              \v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b                              \v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b                              ", ConsoleColor.Green, ConsoleColor.Black);
+        ColoredText refresh2 = new ColoredText("                                    ", ConsoleColor.Green, ConsoleColor.Black);
         ColoredText instructions = new ColoredText(@"  ██╗  ██╗ ██████╗ ██╗    ██╗    ██████╗     ██████╗ ██╗      █████╗ ██╗   ██╗│ 
   ██║  ██║██╔═══██╗██║    ██║    ╚════██╗    ██╔══██╗██║     ██╔══██╗╚██╗ ██╔╝│ 
  │███████║██║   ██║██║ █╗ ██║     █████╔╝    ██████╔╝██║     ███████║ ╚████╔╝   
@@ -148,17 +148,17 @@ TERMINATING PROGRAM...                       ░░░▒▓▓▓▓▓▓▓�
  │   ╔═══════════════════════════════════════════════════════════════════╗  ││  
 ││   ║   - Enter the correct passcode to destroy the bytes               ║   │  
 │    ║                                                                   ║  ││  
-│────║   - Your goal is to gain the highest score in the leaderboards    ║──││──
+│────║   - Your goal is to gain the high score                           ║──││──
 │    ║                                                                   ║  ││  
-│    ║   - A Special Ability will appear on console every 10000 score    ║   │  
+│    ║                                                                   ║   │  
 ││   ║         ▄▓██▄                 ▄▓██▄                 ▄▓██▄         ║   │  
  │   ║        ░▒▓███▓               ░▒▓███▓               ░▒▓███▓        ║   ││ 
  │   ║        ░▌ ▒ ▐▓               ░▌ ▒ ▐▓               ░▌ ▒ ▐▓        ║   ││ 
 ─│───║         ██▄██                 ██▄██                 ██▄██         ║───││─
  │   ║        ▐▄■■■▄▌               ▐▄■■■▄▌               ▐▄■■■▄▌        ║   ││ 
  │   ║         ▀▒▓█▀                 ▀▒▓█▀                 ▀▒▓█▀         ║   │  
- │   ║  10 seconds to Attack  5 seconds to Attack   10 seconds to lock   ║   │  
- │   ║                                            keyboard for 2 seconds ║   │  
+ │   ║                                                                   ║   │  
+ │   ║                                                                   ║   │  
  │   ║ [Press any button to Start]                                       ║   │  
 ─│───╚═══════════════════════════════════════════════════════════════════╝───│──
  │            │             │           │           │           │           ││  
@@ -224,11 +224,11 @@ TERMINATING PROGRAM...                       ░░░▒▓▓▓▓▓▓▓�
 
         List<List<List<List<string>>>> BeyondGodsSight = new List<List<List<List<string>>>>(); // why the fuck would they let me do this
 
-        List<List<string>> PasswordsMasterList = new List<List<string>>(){ 
-            new List<string>() {"rainbow", "coffee", "pizza", "pasta", "power", "game", "sky", "terminator", "wolf", "dog", "manner", "sphere", "investigate", "demonstrate", "acknowledge", "communicate", "characterize"},//lowercase
-        new List<string>() {"Elephant", "Pineapple", "Harmony", "Boat", "Ghost", "Diamond", "Obsidian", "Tools", "Free", "Planet", "Security", "Clothes", "Championship", "Organization", "Combination", "Nature", "Soupman" },//uppercase
+        List<List<string>> PasswordsMasterList = new List<List<string>>(){
+            new List<string>() {"@BCD3", "Flashlight!234", "Flower@-pedal", "red-machine", "Mock?up", "Money$", "w-w-wgo", "#blessed","$h@z@m"},//special
         new List<string>() {"mineBlocks", "winterSeason", "pizzaSlice", "theMaker", "glowDust", "tomCruise", "tomHanks", "greenLight", "monsterJam", "raceTrack" },//camelcase
-        new List<string>() {"@BCD3", "Flashlight!234", "Flower@-pedal", "red-machine", "Mock?up", "Money$", "w-w-wgo", "#blessed","$h@z@m"},//special
+        new List<string>() {"Elephant", "Pineapple", "Harmony", "Boat", "Ghost", "Diamond", "Obsidian", "Tools", "Free", "Planet", "Security", "Clothes", "Championship", "Organization", "Combination", "Nature", "Soupman" },//uppercase
+        new List<string>() {"rainbow", "coffee", "pizza", "pasta", "power", "game", "sky", "terminator", "wolf", "dog", "manner", "sphere", "investigate", "demonstrate", "acknowledge", "communicate", "characterize"},//lowercase
         new List<string>() {"815", "18984", "7585", "1954", "29857", "720", "10587", "7536", "1234", "2005", "3078", "7510", "8213","3","6789","01134"}//numerical
         };
 
@@ -239,20 +239,77 @@ TERMINATING PROGRAM...                       ░░░▒▓▓▓▓▓▓▓�
         int lastTime = 0; // last time a byte was added
         int wave = 0;
         int waveProgress; // how far the waves have progressed
-        int waveMax = 6; // max wave
+        int waveMax = 5; // max wave
         int lives = 3;
         int consoleToatal = 2;
         int consolenum = 0;
-
+        int listNum = 5; // todo listnum tech
         float lastByteTime = 0;
+        int listPhase = 0;
+        int lastPassReset = 0;
 
         public void passwordReset()
         {
+            lastPassReset = wave;
             Passwords.Clear();
-            int listNum = 4; // todo listnum tech
-            foreach (string passworded in PasswordsMasterList[listNum])
+            switch (listPhase)
             {
-                Passwords.Add(passworded);
+                case 0:
+                    if (listNum > 1)
+                    {
+                        listNum = listNum - 1;
+                    }
+                    else
+                    {
+                        listPhase++;
+                        listNum = 4;
+                    }
+                    foreach (string passworded in PasswordsMasterList[listNum])
+                    {
+                        Passwords.Add(passworded);
+                    }
+                    return;
+                case 1:
+                    if (listNum > 0)
+                    {
+                        listNum = listNum - 1;
+                    }
+                    else
+                    {
+                        listPhase++;
+                        listNum = 3;
+                    }
+                    foreach (string passworded in PasswordsMasterList[4])
+                    {
+                        Passwords.Add(passworded);
+                    }
+                    foreach (string passworded in PasswordsMasterList[listNum])
+                    {
+                        Passwords.Add(passworded);
+                    }
+                    return;
+                case 2:
+                    foreach (string passworded in PasswordsMasterList[0])
+                    {
+                        Passwords.Add(passworded);
+                    }
+                    foreach (string passworded in PasswordsMasterList[1])
+                    {
+                        Passwords.Add(passworded);
+                    }
+                    foreach (string passworded in PasswordsMasterList[2])
+                    {
+                        Passwords.Add(passworded);
+                    }
+                    foreach (string passworded in PasswordsMasterList[3])
+                    {
+                        Passwords.Add(passworded);
+                    }
+                    foreach (string passworded in PasswordsMasterList[4])
+                    {
+                        Passwords.Add(passworded);
+                    }
+                    return;
             }
         }
         /// Run once before Execute begins
@@ -337,14 +394,16 @@ TERMINATING PROGRAM...                       ░░░▒▓▓▓▓▓▓▓�
                 map.Poke(0, 0, credits);
 
                 gameover2 = true;
+                /*
                 Thread.Sleep(7000);
                 // scoreboard
+                
                 Terminal.CursorVisible = false;
                 Console.Clear();
                 map.Poke(0, 0, scoreboard);
 
                 gameover2 = true;
-
+                */
             }
             else
             {
@@ -395,7 +454,7 @@ TERMINATING PROGRAM...                       ░░░▒▓▓▓▓▓▓▓�
             Terminal.SetCursorPosition(3, 23);
             Input.TextKiller();
             refresh.fgColor = ConsoleColor.Green;
-            waveMax = 6 + wave * Random.Integer(1, 4);
+            waveMax = 5 + wave * Random.Integer(1, 3);
             lastByteTime = Time.ElapsedSeconds;
         }
         void heartdraw()
@@ -423,13 +482,25 @@ TERMINATING PROGRAM...                       ░░░▒▓▓▓▓▓▓▓�
                     if (Bytes[i].password == lastInput)
                     { // password input
                         map.Poke(Bytes[i].xPos - 2, 2, texttt);
-                        map.Poke(3, 15 , refresh2);
+                        
                         consoleToatal++;
 
                         scoreBor.ScoreAdd(Bytes[i]);
                         map.Poke(12, 1, new ColoredText(scoreBor.pointTotal.ToString(), ConsoleColor.Green, ConsoleColor.Black));
-
+                        if (Bytes[i].byteWindow == 0)
+                        {
+                            map.Poke(3, 16, refresh2);
+                        }
+                        else if (Bytes[i].byteWindow == 1)
+                        {
+                            map.Poke(3, 17, refresh2);
+                        }
+                        else
+                        {
+                            map.Poke(3, 18, refresh2);
+                        }
                         Bytes[i] = null;
+                        /*
                         foreach (ByteClass bitt in Bytes)
                         {
                             if (bitt != null)
@@ -440,16 +511,28 @@ TERMINATING PROGRAM...                       ░░░▒▓▓▓▓▓▓▓�
 
 
                         }
+                        */
                         Terminal.SetCursorPosition(termtemp, 23); // FIX
                     }
                 }
             }
 
-            
+            /*
             if (lastInput == "add")
             { // debugging, remove later.
-                ByteAdd();
+                wave++;
+                Terminal.SetCursorPosition(43, 1);
+                Terminal.Write(wave + 1);
+                if (wave < lastPassReset + 1)
+                {
+                    passwordReset();
+                    lastPassReset = wave;
+                }
+                Terminal.SetCursorPosition(termtemp, 23);
+                //ByteAdd();
+
             }
+            */
             
             lastInput = null;
         }
@@ -461,7 +544,7 @@ TERMINATING PROGRAM...                       ░░░▒▓▓▓▓▓▓▓�
             lastTime = Time.ElapsedSecondsWhole;
             // byte spawn code 
             
-            if (lastByteTime + (9.0 - (0.3 * wave)) < Time.ElapsedSeconds)
+            if (lastByteTime + (8.0 - (0.2 * wave)) < Time.ElapsedSeconds)
             {
                 
                 ByteAdd();
@@ -470,7 +553,7 @@ TERMINATING PROGRAM...                       ░░░▒▓▓▓▓▓▓▓�
                 
                 if (waveProgress > waveMax) // Spawn time will start at 10 second intervals, decreases by 0.33 seconds each round (Wave 30 is when there's absolutely no cooldown)
                 {
-                    waveMax = 4 + wave * Random.Integer(1, 3);
+                    waveMax = 5 + wave * Random.Integer(1, 3);
                     wave++;
                     waveProgress = 0;
                     Terminal.SetCursorPosition(43, 1);
@@ -491,17 +574,30 @@ TERMINATING PROGRAM...                       ░░░▒▓▓▓▓▓▓▓�
                     if (fuck == "KILLNOW")
                     { // this gets rid of the byte
                         map.Poke(Bytes[i].xPos - 2, 2, texttt);
-                        map.Poke(3, 15, refresh2);
-                        lives -= 1;
-                        consoleToatal++;
+                        if (Bytes[i].byteWindow == 0)
+                        {
+                            map.Poke(3, 16, refresh2);
+                        }
+                        else if (Bytes[i].byteWindow == 1)
+                        {
+                            map.Poke(3, 17, refresh2);
+                        }
+                        else
+                        {
+                            map.Poke(3, 18, refresh2);
+                        }
+                            lives -= 1;
+                            consoleToatal++;
                         if (lives != 0)
                         {
                             heartdraw();
 
                             Bytes[i] = null;
+                            
 
                             int[,] evilSort = new int[3, 2];
                             int[] evilSort2 = new int[3];
+                            /*
                             for (int x = 0; x < 3; x++)
                             {
                                 if (Bytes[x] != null)
@@ -511,17 +607,19 @@ TERMINATING PROGRAM...                       ░░░▒▓▓▓▓▓▓▓�
 
                                 }
                             }
-                                
-                                /*
-                            for (int y = 0; y < 3; y++)
-                            {
-                                if (evilSort[x,0] > Bytes[y].TimeBorn)
-                                {
-                                    //evilSort[x,1]
-                                }
-                            }
-                                */
+                            */
                             
+
+                            /*
+                        for (int y = 0; y < 3; y++)
+                        {
+                            if (evilSort[x,0] > Bytes[y].TimeBorn)
+                            {
+                                //evilSort[x,1]
+                            }
+                        }
+                            */
+
 
                         }
                         else //out of lives
@@ -571,7 +669,7 @@ TERMINATING PROGRAM...                       ░░░▒▓▓▓▓▓▓▓�
                 string tempPass = Passwords[tempnum];
                 Passwords.RemoveAt(tempnum);
                 
-                if (Passwords.Count < 2)
+                if (wave> lastPassReset+1)
                 {
                     passwordReset();
                 }
