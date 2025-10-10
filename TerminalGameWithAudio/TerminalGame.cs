@@ -586,7 +586,7 @@ TERMINATING PROGRAM...                       ░░░▒▓▓▓▓▓▓▓�
                         {
                             map.Poke(3, 18, refresh2);
                         }
-                            //lives -= 1;
+                            lives -= 1;
                             consoleToatal++;
                         if (lives != 0)
                         {
