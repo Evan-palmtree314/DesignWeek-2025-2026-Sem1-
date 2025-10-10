@@ -10,6 +10,9 @@ public class ByteClass
 {
     public ColoredText byte1 = new("░  ░  ▄ ░  ░      \v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b░  ░▓▒  ▒▓▓█▒ ░▓▒  ░  \v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b  ░  ░ ░▓████▓  ░ ▓▒  \v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b ░▒▓   ▒▌ ▓ ▐▓ ▓▒░    \v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b  ▓   ░ ██▄██   ▓    ░\v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b░    ▒ ░▄■■■▄▓    ░   \v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b ▒      ▀▒▓█▀      ▒░ ");
 
+    ColoredText byte2 =new(" ░ ░    ▄▓██▄ ░▒░     \v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b   ▒█  ░▒▓███▓ ▓  ░   \v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b ░  ▓  ░▌ ▒ ▐▓  ░ █▓ ░\v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b ░▓▒  ░ ██▄██  ░░▓    \v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b  █  ░ ▐▄■■■▄▌  ▓█  ░ \v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b ░    ░ ▀▒▓█▀      ░▒ \v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b▓            ░      ▓");
+
+    ColoredText byteDeathanim = new("\\  ▄  /\v\b\b\b\b\b\b\b\b \\███/ \v\b\b\b\b\b\b\b\b██\\█/██\v\b\b\b\b\b\b\b\b█▌ \\ ▐█\v\b\b\b\b\b\b\b\b █/▄\\█ \v\b\b\b\b\b\b\b\b█/■■■\\█");
     string timer10 = "╔▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄╗\v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b╚▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀╝";
 
     string timer9 = "╔▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄──╗\v\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b╚▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀──╝";
@@ -50,7 +53,38 @@ public class ByteClass
     float timee;
     int timeCounter = 10;
     public string password;
-    public ByteClass(int type, int window, string pass)
+
+    //string consolewords = "";
+    public int consoleorder = 0;
+
+    //public int TimeBorn = 0;
+
+    public void ConsoleWriter()
+    {
+        //consoleorder++;
+
+        int FUCK = Terminal.CursorLeft;
+        Terminal.SetCursorPosition(3, 16 + byteWindow);
+        int bittenWindow = byteWindow + 1;
+        Terminal.Write("Window " + bittenWindow + " incoming byte: " + password);
+
+        Terminal.SetCursorPosition(FUCK, 23);
+    }
+    
+    public void stupidFunctionThatIHate()
+    {
+        int FUCK = Terminal.CursorLeft;
+        Terminal.SetCursorPosition(3, 16 + byteWindow);
+        int bittenWindow = byteWindow + 1;
+        Terminal.Write("Window "+bittenWindow+" incoming byte: " + password);
+
+        Terminal.SetCursorPosition(FUCK, 23);
+        
+
+    }
+
+
+    public ByteClass(int type, int window, string pass, int consoleshit)
 	{
         /// import timer sprites.
         //Time.ElapsedSeconds()
@@ -58,6 +92,7 @@ public class ByteClass
         this.byteType = type;
         this.byteWindow = window;
         this.password = pass;
+        this.consoleorder = consoleshit;
         switch (byteWindow)
         {
             case 0:
